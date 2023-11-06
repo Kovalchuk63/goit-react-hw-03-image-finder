@@ -7,12 +7,10 @@ class ImageGalleryItem extends PureComponent {
     isModalOpen: false,
   };
 
-  openModal = () => {
-    this.setState({ isModalOpen: true });
-  };
-
-  closeModal = () => {
-    this.setState({ isModalOpen: false });
+  toggleModal = () => {
+    this.setState(prevState => ({
+      isModalOpen: !prevState.isModalOpen,
+    }));
   };
 
   render() {
@@ -24,12 +22,12 @@ class ImageGalleryItem extends PureComponent {
           className={css.image}
           src={image}
           alt={tags}
-          onClick={this.openModal}
+          onClick={this.toggleModal}
           loading="lazy"
         />
         <ModalWindow
           isModalOpen={isModalOpen}
-          closeModal={this.closeModal}
+          closeModal={this.toggleModal}
           largeImageURL={largeImageURL}
           tags={tags}
         />
